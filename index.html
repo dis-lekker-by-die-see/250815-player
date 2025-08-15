@@ -19,7 +19,9 @@
         />
         <button id="selectSourceBtn">Select Source</button>
         <button id="sortBtn">Sort: Alphabetical</button>
-        <button id="shuffleOneBtn" class="toggle">Shuffle One Track</button>
+        <button id="repeatCurrentBtn" class="toggle">
+          Repeat Current Track
+        </button>
         <button id="shuffleAllBtn" class="toggle">Shuffle All Tracks</button>
       </div>
       <div class="player">
@@ -27,22 +29,22 @@
         <div class="track-info">
           <span id="currentTrack">No track selected</span>
         </div>
-        <div class="progress">
-          <input type="range" id="progressBar" value="0" max="100" />
-        </div>
-        <div class="volume">
-          <input
-            type="range"
-            id="volumeSlider"
-            min="0"
-            max="1"
-            step="0.01"
-            value="1"
-          />
+        <div class="skip-controls">
+          <button id="skipBackBtn">⏮ Skip Back</button>
+          <button id="skipForwardBtn">⏭ Skip Forward</button>
         </div>
       </div>
       <div class="playlist">
-        <ul id="trackList"></ul>
+        <table id="trackList">
+          <thead>
+            <tr>
+              <th class="resize" data-column="no">No.</th>
+              <th class="resize" data-column="title">Title</th>
+              <th class="resize" data-column="source">Source</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </div>
     <script src="script.js"></script>

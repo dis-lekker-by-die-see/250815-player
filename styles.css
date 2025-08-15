@@ -12,8 +12,8 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
+  width: calc(100vw - 40px);
+  max-width: none;
 }
 
 .controls {
@@ -21,6 +21,13 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
+}
+
+.skip-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 button {
@@ -37,11 +44,11 @@ button:hover {
 }
 
 .toggle.active {
-  background: #28a745;
+  background: #28a745 !important;
 }
 
 .toggle.active:hover {
-  background: #218838;
+  background: #218838 !important;
 }
 
 .player {
@@ -59,31 +66,72 @@ audio {
   font-weight: bold;
 }
 
-.progress,
-.volume {
-  margin: 10px 0;
-}
-
-input[type="range"] {
-  width: 100%;
-}
-
 .playlist {
-  max-height: 200px;
-  overflow-y: auto;
+  width: 100%;
+  overflow-x: auto;
 }
 
 #trackList {
-  list-style: none;
-  padding: 0;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
-#trackList li {
+#trackList th,
+#trackList td {
   padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#trackList th {
+  background: #f8f9fa;
+  position: relative;
+}
+
+#trackList th[data-column="no"] {
+  width: 50px;
+  min-width: 50px;
+}
+
+#trackList th[data-column="title"] {
+  width: 300px;
+  min-width: 100px;
+}
+
+#trackList th[data-column="source"] {
+  width: 300px;
+  min-width: 100px;
+}
+
+#trackList th.resize::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 0;
+  height: 100%;
+  width: 6px;
+  cursor: col-resize;
+  background: transparent;
+  z-index: 10;
+}
+
+#trackList th.resize:hover::after {
+  background: #ccc;
+}
+
+#trackList tr {
   cursor: pointer;
 }
 
-#trackList li:hover,
-#trackList li.active {
+#trackList tr:hover,
+#trackList tr.active {
   background: #e9ecef;
+}
+
+#trackList td {
+  max-width: 0;
 }
