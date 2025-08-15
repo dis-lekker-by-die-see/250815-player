@@ -19,15 +19,8 @@ body {
 .controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
   margin-bottom: 20px;
-}
-
-.skip-controls {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 10px;
 }
 
 button {
@@ -51,6 +44,34 @@ button:hover {
   background: #218838 !important;
 }
 
+.skip-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+#skipForwardBtn,
+#skipBackBtn {
+  /* margin: 10px; */
+  margin-bottom: 20px;
+  font-size: 20px;
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: none;
+  border-radius: 5px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+#skipForwardBtn {
+  margin-left: 20px;
+}
+#skipBackBtn {
+  margin-right: 20px;
+}
+
 .player {
   text-align: center;
   margin-bottom: 20px;
@@ -58,12 +79,15 @@ button:hover {
 
 audio {
   width: 100%;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .track-info {
-  margin: 10px 0;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 32px;
   font-weight: bold;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .playlist {

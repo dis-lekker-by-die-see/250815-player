@@ -8,32 +8,36 @@
   </head>
   <body>
     <div class="player-container">
-      <h1>Music Player</h1>
-      <div class="controls">
-        <input
-          type="file"
-          id="folderInput"
-          webkitdirectory
-          directory
-          style="display: none"
-        />
-        <button id="selectSourceBtn">Select Source</button>
-        <button id="sortBtn">Sort: Alphabetical</button>
-        <button id="repeatCurrentBtn" class="toggle">
-          Repeat Current Track
-        </button>
-        <button id="shuffleAllBtn" class="toggle">Shuffle All Tracks</button>
-      </div>
+      <!-- <h1>Music Player</h1> -->
+      <br />
       <div class="player">
-        <audio id="audioPlayer" controls></audio>
         <div class="track-info">
           <span id="currentTrack">No track selected</span>
         </div>
+        <audio id="audioPlayer" controls></audio>
         <div class="skip-controls">
-          <button id="skipBackBtn">⏮ Skip Back</button>
-          <button id="skipForwardBtn">⏭ Skip Forward</button>
+          <button id="skipBackBtn">⏮</button>
+          <div class="controls">
+            <input
+              type="file"
+              id="folderInput"
+              webkitdirectory
+              directory
+              style="display: none"
+            />
+            <button id="selectSourceBtn">Select Source</button>
+            <button id="sortBtn">Sort: Alphabetical</button>
+            <button id="repeatCurrentBtn" class="toggle">
+              Repeat Current Track
+            </button>
+            <button id="shuffleAllBtn" class="toggle">
+              Shuffle All Tracks
+            </button>
+          </div>
+          <button id="skipForwardBtn">⏭</button>
         </div>
       </div>
+
       <div class="playlist">
         <table id="trackList">
           <thead>
