@@ -9,7 +9,6 @@ let bufferedTracks = {
   next: null,
 };
 
-console.log("1550");
 document.addEventListener("DOMContentLoaded", () => {
   audioPlayer = document.getElementById("audioPlayer");
   const folderInput = document.getElementById("folderInput");
@@ -46,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function setupColumnResizing() {
   const headers = document.querySelectorAll("#trackList th.resize");
   headers.forEach((header) => {
-    // Remove existing listeners to prevent duplicates
     header.removeEventListener("mousedown", handleMouseDown);
     header.addEventListener("mousedown", handleMouseDown);
   });
@@ -60,20 +58,20 @@ function handleMouseDown(e) {
     e.stopPropagation();
     let startX = e.clientX;
     let startWidth = header.offsetWidth;
-    console.log(`Resizing ${header.dataset.column} column`); // Debug
+    console.log(`Resizing ${header.dataset.column} column`);
     const onMouseMove = (moveEvent) => {
       moveEvent.preventDefault();
       let newWidth = startWidth + (moveEvent.clientX - startX);
       if (newWidth >= 50) {
         header.style.width = `${newWidth}px`;
         header.style.minWidth = `${newWidth}px`;
-        console.log(`New width for ${header.dataset.column}: ${newWidth}px`); // Debug
+        console.log(`New width for ${header.dataset.column}: ${newWidth}px`);
       }
     };
     const onMouseUp = () => {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseup", onMouseUp);
-      console.log(`Finished resizing ${header.dataset.column}`); // Debug
+      console.log(`Finished resizing ${header.dataset.column}`);
     };
     document.addEventListener("mousemove", onMouseMove);
     document.addEventListener("mouseup", onMouseUp);
@@ -83,7 +81,7 @@ function handleMouseDown(e) {
 async function handleFolderSelect(event) {
   tracks = [];
   const files = event.target.files;
-  console.log("Files loaded:", files.length); // Debug
+  console.log("Files loaded:", files.length);
   for (const file of files) {
     if (file.type.startsWith("audio/")) {
       tracks.push({
@@ -95,7 +93,7 @@ async function handleFolderSelect(event) {
       });
     }
   }
-  console.log("Tracks processed:", tracks.length); // Debug
+  console.log("Tracks processed:", tracks.length);
   updateTrackList();
   if (tracks.length > 0) {
     currentTrackIndex = 0;
@@ -113,14 +111,13 @@ function updateTrackList() {
     tr.dataset.index = index;
     if (index === currentTrackIndex) tr.classList.add("active");
     tr.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${track.name}</td>
-            <td>${track.folder}</td>
-        `;
+      <td>${index + 1}</td>
+      <td>${track.name}</td>
+      <td>${track.folder}</td>
+    `;
     trackListBody.appendChild(tr);
   });
-  console.log("Track list updated, rows:", trackListBody.children.length); // Debug
-  // Reapply column widths and resizing after update
+  console.log("Track list updated, rows:", trackListBody.children.length);
   const headers = document.querySelectorAll("#trackList th.resize");
   headers.forEach((header) => {
     const width = header.style.width || getComputedStyle(header).width;
@@ -179,7 +176,9 @@ function shuffleTracks() {
 function playTrack() {
   if (currentTrackIndex < 0 || currentTrackIndex >= tracks.length) return;
   const track = tracks[currentTrackIndex];
-  document.getElementById("currentTrack").textContent = track.name;
+  document.getElementById("currentTrack").textContent = `${
+    currentTrackIndex + 1
+  }. ${track.name}`;
   audioPlayer.src = URL.createObjectURL(track.file);
   audioPlayer.play();
   updateBufferedTracks();

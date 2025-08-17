@@ -1,10 +1,8 @@
 body {
   font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
   background-color: #f0f0f0;
   margin: 0;
-  padding: 20px;
+  padding: 0;
 }
 
 .player-container {
@@ -14,6 +12,11 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: calc(100vw - 40px);
   max-width: none;
+  position: fixed;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
 .controls {
@@ -24,16 +27,13 @@ body {
 }
 
 button {
-  padding: 10px;
-  border: none;
   border-radius: 5px;
-  background: #007bff;
-  color: white;
+  background: rgb(240, 240, 240);
   cursor: pointer;
 }
 
 button:hover {
-  background: #0056b3;
+  background: rgb(200, 255, 200);
 }
 
 .toggle.active {
@@ -53,21 +53,15 @@ button:hover {
 
 #skipForwardBtn,
 #skipBackBtn {
-  /* margin: 10px; */
   margin-bottom: 20px;
-  font-size: 20px;
-  padding: 5px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border: none;
   border-radius: 5px;
-  background: #007bff;
-  color: white;
   cursor: pointer;
 }
+
 #skipForwardBtn {
   margin-left: 20px;
 }
+
 #skipBackBtn {
   margin-right: 20px;
 }
@@ -78,20 +72,20 @@ button:hover {
 }
 
 audio {
-  width: 100%;
-  /* margin-bottom: 10px; */
+  width: 60%;
 }
 
 .track-info {
-  margin-top: 40px;
+  /* margin-top: 40px; */
   margin-bottom: 20px;
   font-size: 32px;
   font-weight: bold;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .playlist {
   width: 100%;
+  max-height: calc(100vh - 250px); /* Adjust for player content */
+  overflow-y: auto;
   overflow-x: auto;
 }
 
@@ -113,7 +107,9 @@ audio {
 
 #trackList th {
   background: #f8f9fa;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 500;
 }
 
 #trackList th[data-column="no"] {
